@@ -1,0 +1,321 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    font-family: system-ui, sans-serif;
+
+    background:
+        radial-gradient(1200px 600px at 20% 10%, #1e3c72 0%, transparent 60%),
+        radial-gradient(800px 500px at 80% 30%, #2a5298 0%, transparent 55%),
+        linear-gradient(180deg, #0b132b, #0f1b3d);
+}
+
+.scene {
+    position: relative;
+    width: 400px;
+    height: 300px;
+}
+
+.letter {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 1; /* behind toothless */
+    pointer-events: none;
+}
+
+.letter h1 {
+    font-size: 280px;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+    color: rgba(255,255,255,0.08);
+    letter-spacing: -0.05em;
+    font-family: 'Playfair Display', 'Cinzel', serif;
+}
+
+
+/* TOOTHLESS */
+.toothless {
+    --scale: 1.6; 
+    position: absolute;
+    bottom: 100px;
+    left: 210px;
+    width: 300px;
+    height: 200px;
+    background: radial-gradient(circle at 30% 20%, #333, #111);
+    border-radius: 50% 50% 45% 45%;
+    transform: translate(-50%, 50%) scale(var(--scale)) rotate(var(--tilt, 0deg));
+    transition: transform 1s cubic-bezier(.22,1,.36,1);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.toothless.lowered {
+    transform: translate(-50%, 400px) scale(var(--scale)) rotate(var(--tilt, 0deg));
+}
+
+.head {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, #333, #111);
+    border-radius: 50% 50% 45% 45%;
+    z-index: 2;
+}
+
+/* EYES */
+.eye {
+    position: absolute;
+    top: 78px;
+    width: 68px;
+    height: 78px;
+    overflow: visible; /* IMPORTANT */
+}
+
+.eye {
+    top: 72px; /* was 78px → slightly up */
+}
+
+.eye.left {
+    left: 55px; /* was 65px → further left */
+}
+
+.eye.right {
+    right: 55px; /* was 65px → further right */
+}
+.eye.left .eye-shape {
+    transform: rotate(-40deg) scaleX(-1);
+}
+
+/* RIGHT eye — normal */
+.eye.right .eye-shape {
+    transform: rotate(40deg);
+}
+
+/* the actual eye */
+.eye-shape {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    left: -10%;
+    top: -10%;
+    background: radial-gradient(circle at 35% 35%, #b7ff57, #7ed321);
+    border-radius: 85% 15%;
+}
+/* pupil stays clipped naturally by head */
+.pupil {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #000;
+    border-radius: 50%;
+    top: 30px;
+    left: 25px;
+    z-index: 2;
+}
+
+.ear {
+    position: absolute;
+    top: -65px;
+    width: 85px;
+    height: 150px;
+    background: radial-gradient(circle at 30% 20%, #2b2b2b, #0c0c0c);
+    border-radius: 60% 60% 30% 30%;
+    transform-origin: bottom center;
+}
+
+.ears {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.ear.left {
+    left: 50%;
+    transform: translateX(-120px) rotate(-5deg);
+}
+
+.ear.right {
+    left: 50%;
+    transform: translateX(35px) rotate(5deg);
+}
+.fin {
+    position: absolute;
+    width: 38px;
+    height: 75px;
+    background: radial-gradient(circle at 30% 20%, #2a2a2a, #111);
+    border-radius: 50%;
+    transform-origin: center;
+}
+
+/* LEFT SIDE */
+.fin.left {
+    left: -28px; /* spaced out */
+}
+
+.fin.left.top {
+    top: 55px;
+    transform: rotate(-20deg); /* upward */
+}
+
+.fin.left.bottom {
+    top: 95px;
+    transform: rotate(-40deg); /* was too downward */
+}
+
+
+/* RIGHT SIDE */
+.fin.right {
+    right: -28px; /* spaced out */
+}
+
+.fin.right.top {
+    top: 55px;
+    transform: rotate(20deg); /* upward */
+}
+
+.fin.right.bottom {
+    top: 95px;
+    transform: rotate(40deg);
+}
+
+/* SUBTLE "ALIVE" MOTION */
+@keyframes idle {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -5px); }
+}
+
+
+.details {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* forehead arcs */
+.arc {
+    position: absolute;
+    width: 16px;              /* slightly wider */
+    height: 9px;
+    border-top: 2px solid rgba(0,0,0,0.35); /* darker */
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* more spacing */
+.a1 { top: 18px; }
+.a2 { top: 34px; }
+.a3 { top: 50px; }
+.a4 { top: 66px; }
+
+.nose-arc {
+    position: absolute;
+    left: 50%;
+    width: 26px;
+    height: 14px;
+    border-top: 2px solid rgba(0,0,0,0.4);
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+/* main nose curve */
+.nose-arc.top {
+    top: 142px;
+    width: 18px;      /* was ~26–28px */
+    height: 10px;
+}
+
+/* inverted arc below */
+.nose-arc.bottom {
+    top: 148px;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+@keyframes breathe {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(3px);
+    }
+}
+
+.head {
+    animation: breathe 6s ease-in-out infinite;
+}
+
+.eye-shape {
+    transform-origin: center center;
+    transition: transform 0.12s ease;
+}
+
+@keyframes earTwitchLeft {
+    0%, 100% { transform: translateX(-120px) rotate(-5deg); }
+    50% { transform: translateX(-120px) rotate(-12deg); }
+}
+
+@keyframes earTwitchRight {
+    0%, 100% { transform: translateX(35px) rotate(5deg); }
+    50% { transform: translateX(35px) rotate(12deg); }
+}
+
+.ear.twitch.left {
+    animation: earTwitchLeft 0.4s ease-in-out;
+}
+
+.ear.twitch.right {
+    animation: earTwitchRight 0.4s ease-in-out;
+}
+
+@keyframes finSwayLeft {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(-28deg); }
+}
+
+@keyframes finSwayRight {
+    0%, 100% { transform: rotate(20deg); }
+    50% { transform: rotate(28deg); }
+}
+
+.fin.left {
+    animation: finSwayLeft 5s ease-in-out infinite;
+}
+
+.fin.right {
+    animation: finSwayRight 5s ease-in-out infinite;
+}
+.fin.bottom {
+    animation-delay: -2.5s;
+}
+
+.toothless {
+    transform: translateX(-50%) scale(var(--scale)) rotate(var(--tilt, 0deg));
+}
+
+.toothless.show {
+    transform: translate(-50%, -200px) scale(var(--scale)) rotate(var(--tilt, 0deg));
+}
+
+
+
+@media (max-width: 600px) {
+    .scene {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .letter h1 {
+        font-size: 220px;
+    }
+
+    .toothless {
+        left: 50%;
+        bottom: 120px;
+        --scale: 1.3;
+    }
+}

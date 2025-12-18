@@ -27,6 +27,16 @@ body {
     pointer-events: none;
 }
 
+h1{
+    font-size: 120px;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+    color: rgba(255,255,255,1);
+    letter-spacing: -0.05em;
+    font-family: 'Playfair Display', 'Cinzel', serif;
+}
+
 .letter h1 {
     font-size: 280px;
     font-weight: 800;

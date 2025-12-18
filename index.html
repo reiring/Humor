@@ -9,6 +9,7 @@
 <div class="scene">
     <div class="letter">
         <h1>I</h1>
+        <p class="secret-text"></p>
     </div>
 
     <div class="toothless" id="toothless">
@@ -182,4 +183,24 @@ setTimeout(twitchEar, 2000);
 if (isTouch) {
     startRandomEyes();
 }
+</script>
+<script>
+/* ---------------------------
+   25-CLICK EASTER EGG
+---------------------------- */
+let clickCount = 0;
+let textFilled = false;
+
+const secretText = document.querySelector('.secret-text');
+
+document.addEventListener('click', () => {
+    if (textFilled) return;
+
+    clickCount++;
+
+    if (clickCount === 25) {
+        secretText.textContent = 'Kéž bych ti mohl říct, jak moc mi na tobě zálěží';
+        textFilled = true;
+    }
+});
 </script>

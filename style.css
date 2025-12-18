@@ -27,14 +27,22 @@ body {
     pointer-events: none;
 }
 
-h1{
-    font-size: 120px;
+.maintext {
+    position: absolute;   /* ← key part */
+    top: 20%;            /* adjust as you like */
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 72px;
     font-weight: 800;
     line-height: 1;
+    text-align: center;
     margin: 0;
-    color: rgba(255,255,255,1);
+    color: rgba(255,255,255,0.6);
     letter-spacing: -0.05em;
     font-family: 'Playfair Display', 'Cinzel', serif;
+
+    pointer-events: none; /* optional: clicks go through */
 }
 
 .letter h1 {
